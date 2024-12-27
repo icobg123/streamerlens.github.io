@@ -42,7 +42,24 @@
         <p>Completing authentication...</p>
     </div>
     <script>
-        // Close the window after a short delay
+        if (window.location.hash) {
+            const params = new URLSearchParams(window.location.hash.substring(1));
+            const accessToken = params.get('access_token');
+            const state = params.get('state');
+            
+            if (accessToken && state) {
+                // Send message directly to extension
+                window.postMessage(
+                    {
+                        type: 'STREAMER_LENS_AUTH',
+                        accessToken,
+                        state
+                    },
+                    '*'
+                );
+            }
+        }
+        // Close the window after processing
         setTimeout(() => {
             window.close();
         }, 1000);
