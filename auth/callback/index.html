@@ -42,9 +42,10 @@
         <p>Completing authentication...</p>
     </div>
     <script>
-        if (window.location.hash) {
-            window.location.href = `streamerlens://${window.location.hash}`;
-        }
+        // Close the window after a short delay
+        setTimeout(() => {
+            window.close();
+        }, 1000);
     </script>
 </body>
 </html>
